@@ -356,6 +356,7 @@ export default {
             },
           },
         },
+        maintainAspectRatio: false,
       },
 
       priceList: [],
