@@ -493,9 +493,11 @@ export default {
         } else {
           this.chartData.datasets.push({
             label: this.priceData[area].json.dateyesterday + this.addedLabel,
-            backgroundColor: "rgb(27, 110, 144)",
-            borderColor: "rgb(250, 222, 75)",
+            backgroundColor: "rgba(27, 110, 144, 0.3)",
+            borderColor: "rgba(0, 0, 0, 0.3)",
             data: this.priceData[area].json.hourlyyesterday,
+            stepped: true,
+            borderDash: [5, 5],
           });
         }
       } else if (this.selectCompare === "3") {
@@ -507,9 +509,11 @@ export default {
         } else {
           this.chartData.datasets.push({
             label: this.priceData[area].json.datelastyear + this.addedLabel,
-            backgroundColor: "rgb(27, 110, 144)",
-            borderColor: "rgb(250, 222, 75)",
+            backgroundColor: "rgba(27, 110, 144, 0.3)",
+            borderColor: "rgba(0, 0, 0, 0.3)",
             data: this.priceData[area].json.hourlylastyear,
+            stepped: true,
+            borderDash: [5, 5],
           });
         }
       }
