@@ -58,7 +58,6 @@ input[type="input"]:focus {
         <div class="elpris-input-wrapper">
           <div>Välj elområde</div>
           <select
-            id="elomrade"
             name="elomrade"
             data-name="elomrade"
             v-model="selectArea"
@@ -73,7 +72,6 @@ input[type="input"]:focus {
         <div class="elpris-input-wrapper">
           <div>Välj period</div>
           <select
-            id="period"
             name="period"
             data-name="period"
             v-model="selectPeriod"
@@ -101,7 +99,6 @@ input[type="input"]:focus {
         <div class="elpris-input-wrapper">
           <div>Jämför med</div>
           <select
-            id="jamfor"
             name="jamfor"
             data-name="jamfor"
             v-model="selectCompare"
@@ -113,12 +110,8 @@ input[type="input"]:focus {
           </select>
         </div>
       </div>
-      <div
-        id="message-box"
-        v-bind:style="{ display: messageBox }"
-        class="message-box"
-      >
-        <div id="message">{{ statusMessage }}</div>
+      <div v-bind:style="{ display: messageBox }" class="message-box">
+        <div>{{ statusMessage }}</div>
       </div>
 
       <div class="elprisapp-tabell-meny">
@@ -146,22 +139,16 @@ input[type="input"]:focus {
       <div v-show="!loader" class="elprisapp-tabs">
         <div v-show="selectedTab === 0">
           <div class="w-layout-grid elpris-grid">
-            <div id="w-node-_3119e204-24a6-a7f8-e5c9-c8da21fa9682-3da21bb0">
-              <div
-                id="w-node-_2f2d26e3-2305-8ab5-6fba-52907421f960-3da21bb0"
-                class="elpris-column"
-              >
+            <div>
+              <div class="elpris-column">
                 <div class="elpriser-table-rubrik">Tidsperiod</div>
               </div>
               <div v-for="(label, index) of tableLabels" class="elpris-column">
                 <div>{{ label }}</div>
               </div>
             </div>
-            <div id="w-node-_113f61a3-2d55-5f33-ab29-93880e7e9f8e-3da21bb0">
-              <div
-                id="w-node-_0b7dd317-6b8f-4354-7b56-151ab444f47a-3da21bb0"
-                class="elpris-column right"
-              >
+            <div>
+              <div class="elpris-column right">
                 <div class="elpriser-table-rubrik">{{ tableHeading }}</div>
               </div>
               <div
@@ -173,16 +160,10 @@ input[type="input"]:focus {
             </div>
           </div>
           <div class="w-layout-grid elpris-grid">
-            <div
-              id="w-node-_7f335b8d-3851-6aef-af18-696fefab8f5d-3da21bb0"
-              class="elpris-column"
-            >
+            <div class="elpris-column">
               <div>Medelpris</div>
             </div>
-            <div
-              id="w-node-_7f335b8d-3851-6aef-af18-696fefab8f64-3da21bb0"
-              class="elpris-column right"
-            >
+            <div class="elpris-column right">
               <div>{{ averagePrice }}</div>
             </div>
           </div>
@@ -191,6 +172,30 @@ input[type="input"]:focus {
           <div class="graf-wrapper w-embed">
             <canvas ref="myChart"></canvas>
           </div>
+        </div>
+        <div class="elprisapp-tabell-meny">
+          <div class="meny-title-text">Visa pris</div>
+          <a
+            href="#"
+            @click="handleDagens"
+            :class="[
+              visaPris === 0
+                ? 'elpriser-tab chosen w-button'
+                : 'elpriser-tab w-button',
+            ]"
+            >Dagens</a
+          >
+          <a
+            href="#"
+            @click="handleMorgondagens"
+            :class="[
+              visaPris === 1
+                ? 'elpriser-tab chosen w-button'
+                : 'elpriser-tab w-button',
+            ]"
+            class="elpriser-tab w-button"
+            >Morgondagens<br
+          /></a>
         </div>
       </div>
     </div>
@@ -374,6 +379,7 @@ export default {
       loadAnim,
       loader: true,
       gradientBg: null,
+      visaPris: 0,
     };
   },
 
@@ -532,6 +538,7 @@ export default {
     handleTabell() {
       this.selectedTab = 0;
     },
+
     handleGraph() {
       this.selectedTab = 1;
 
@@ -540,6 +547,16 @@ export default {
           this.chartOptions.animation.duration = 1000;
         }, 1000);
       }
+    },
+
+    handleDagens() {
+      this.selectPeriod = "1";
+      this.visaPris = 0;
+    },
+
+    handleMorgondagens() {
+      this.selectPeriod = "2";
+      this.visaPris = 1;
     },
   },
 

@@ -35,11 +35,12 @@ a {
   min-width: 10rem;
   color: #fff;
   text-align: center;
-  background-color: #57a3af;
-  border: 0.2rem solid #c4dade;
+  background-color: #f29091;
+  border: 0.2rem solid rgba(0, 0, 0, 0);
+  border-radius: 0.8rem;
   margin-left: 0.2rem;
   margin-right: 0.2rem;
-  padding: 0.7rem 0.5rem;
+  padding: 0.7rem 0.5rem 0.5rem;
   transition: transform 0.2s;
 }
 
@@ -53,7 +54,8 @@ a {
 }
 
 .elpriser-tab.chosen {
-  background-color: #c4dde2;
+  color: #000;
+  background-color: rgba(0, 0, 0, 0);
   border-style: dotted;
   border-color: #57a3af;
 }
@@ -114,7 +116,7 @@ a {
   grid-auto-columns: 1fr;
   justify-content: center;
   align-items: center;
-  display: flex;
+  display: none;
   position: absolute;
   top: 0%;
   bottom: 0%;
@@ -151,6 +153,7 @@ a {
 }
 
 .elprisapp-tabell-meny {
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin-top: 2.5rem;
@@ -169,7 +172,7 @@ a {
 .elprisapp-wrapper {
   width: 100%;
   min-width: 800px;
-  background-color: #c4dade;
+  background-color: #fff0dd;
   margin-bottom: 0;
   padding: 2.5rem;
 }
@@ -177,6 +180,14 @@ a {
 .elprisapp-tabs {
   justify-content: center;
   align-items: center;
+}
+
+.meny-title-text {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1rem;
+  display: flex;
 }
 
 @media screen and (max-width: 991px) {
@@ -237,15 +248,6 @@ a {
   .elprisapp-wrapper {
     padding: 1rem;
   }
-}
-
-#w-node-_3119e204-24a6-a7f8-e5c9-c8da21fa9682-d2716035,
-#w-node-_2f2d26e3-2305-8ab5-6fba-52907421f960-d2716035,
-#w-node-_113f61a3-2d55-5f33-ab29-93880e7e9f8e-d2716035,
-#w-node-_0b7dd317-6b8f-4354-7b56-151ab444f47a-d2716035,
-#w-node-_7f335b8d-3851-6aef-af18-696fefab8f5d-d2716035,
-#w-node-_7f335b8d-3851-6aef-af18-696fefab8f64-d2716035 {
-  grid-area: span 1 / span 1 / span 1 / span 1;
 }
 
 @font-face {
