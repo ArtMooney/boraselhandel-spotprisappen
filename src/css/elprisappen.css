@@ -205,6 +205,10 @@ a {
     align-self: stretch;
   }
 
+  .graf-wrapper {
+    height: 25rem;
+  }
+
   .loader-overlay {
     top: 30%;
   }
@@ -243,6 +247,10 @@ a {
   .elpriser-tab {
     min-width: 8.4rem;
     margin: 0.3rem;
+  }
+
+  .graf-wrapper {
+    height: 35rem;
   }
 
   .elprisapp-topmenu {
