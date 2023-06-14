@@ -1,1 +1,1 @@
-# Borås Elhandel Elprisapp
+# Borås Elhandel Spotprisapp
