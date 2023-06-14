@@ -33,13 +33,12 @@ a {
 
 .elpriser-tab {
   min-width: 10rem;
-  color: #fff;
+  color: #000;
   text-align: center;
-  background-color: #f29091;
-  border: 0.2rem solid rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  border: 0.2rem dotted #57a3af;
   border-radius: 0.8rem;
-  margin-left: 0.2rem;
-  margin-right: 0.2rem;
+  margin: 0.5rem;
   padding: 0.7rem 0.5rem 0.5rem;
   transition: transform 0.2s;
 }
@@ -55,9 +54,9 @@ a {
 
 .elpriser-tab.chosen {
   color: #000;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: #f29091;
   border-style: dotted;
-  border-color: #57a3af;
+  border-color: rgba(0, 0, 0, 0);
 }
 
 .elpris-input-wrapper {
@@ -241,6 +240,11 @@ a {
 }
 
 @media screen and (max-width: 479px) {
+  .elpriser-tab {
+    min-width: 8.4rem;
+    margin: 0.3rem;
+  }
+
   .elprisapp-topmenu {
     grid-template-columns: 1fr;
   }

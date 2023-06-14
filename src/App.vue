@@ -1,7 +1,7 @@
 <style scoped>
 @import "./css/normalize.css";
 @import "./css/components.css";
-@import "./css/boras-elhandel.css";
+@import "./css/elprisappen.css";
 
 .elpris-input {
   -webkit-appearance: none;
@@ -139,26 +139,22 @@ input[type="input"]:focus {
       <div v-show="!loader" class="elprisapp-tabs">
         <div v-show="selectedTab === 0">
           <div class="w-layout-grid elpris-grid">
-            <div>
+            <div class="elpris-column">
+              <div class="elpriser-table-rubrik">Tidsperiod</div>
+            </div>
+            <div class="elpris-column right">
+              <div class="elpriser-table-rubrik">{{ tableHeading }}</div>
+            </div>
+            <template v-for="(label, index) of tableLabels">
               <div class="elpris-column">
-                <div class="elpriser-table-rubrik">Tidsperiod</div>
-              </div>
-              <div v-for="(label, index) of tableLabels" class="elpris-column">
                 <div>{{ label }}</div>
               </div>
-            </div>
-            <div>
               <div class="elpris-column right">
-                <div class="elpriser-table-rubrik">{{ tableHeading }}</div>
+                <div>{{ priceList[index] }}</div>
               </div>
-              <div
-                v-for="(price, index) in priceList"
-                class="elpris-column right"
-              >
-                <div>{{ price }}</div>
-              </div>
-            </div>
+            </template>
           </div>
+
           <div class="w-layout-grid elpris-grid">
             <div class="elpris-column">
               <div>Medelpris</div>
@@ -462,10 +458,6 @@ export default {
       });
 
       this.myChart = chart;
-      // const ctx = this.$refs.myChart.getContext("2d");
-      // this.gradientBg = ctx.createLinearGradient(0, 0, 0, 400);
-      // this.gradientBg.addColorStop(0.5, "rgba(255, 0, 0, 1)");
-      // this.gradientBg.addColorStop(0.5, "rgba(0, 0, 255, 1)");
     },
 
     updateChart() {
