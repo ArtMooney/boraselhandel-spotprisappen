@@ -128,7 +128,6 @@ a {
 
 .elprisapp {
   width: 100%;
-  min-height: 110vh;
   background-color: #fff0dd;
   flex-direction: row;
   justify-content: center;
