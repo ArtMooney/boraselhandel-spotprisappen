@@ -204,28 +204,28 @@ input[type="input"]:focus {
 <script>
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
-import Chart from "chart.js/auto";
-// import {
-//   Chart,
-//   LineController,
-//   LineElement,
-//   PointElement,
-//   LinearScale,
-//   CategoryScale,
-//   Filler,
-// } from "chart.js";
+// import Chart from "chart.js/auto";
+import {
+  Chart,
+  LineController,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Filler,
+} from "chart.js";
 import { Vue3Lottie } from "vue3-lottie";
 import "vue3-lottie/dist/style.css";
 import loadAnim from "./documents/77076-loading.json";
 
-// Chart.register(
-//   LineController,
-//   LineElement,
-//   PointElement,
-//   LinearScale,
-//   CategoryScale,
-//   Filler
-// );
+Chart.register(
+  LineController,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Filler
+);
 
 export default {
   components: { Datepicker: VueDatePicker, Vue3Lottie },
