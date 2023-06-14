@@ -117,7 +117,6 @@ input[type="input"]:focus {
       <div class="elprisapp-tabell-meny">
         <a
           @click="handleTabell"
-          href="#"
           :class="[
             selectedTab === 0
               ? 'elpriser-tab chosen w-button'
@@ -127,7 +126,6 @@ input[type="input"]:focus {
         >
         <a
           @click="handleGraph"
-          href="#"
           :class="[
             selectedTab === 1
               ? 'elpriser-tab chosen w-button'
@@ -172,7 +170,7 @@ input[type="input"]:focus {
         <div class="elprisapp-tabell-meny">
           <div class="meny-title-text">Visa pris</div>
           <a
-            href="#"
+            href="#app"
             @click="handleDagens"
             :class="[
               visaPris === 0
@@ -182,7 +180,7 @@ input[type="input"]:focus {
             >Dagens</a
           >
           <a
-            href="#"
+            href="#app"
             @click="handleMorgondagens"
             :class="[
               visaPris === 1
