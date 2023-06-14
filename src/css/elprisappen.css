@@ -7,13 +7,6 @@
   display: grid;
 }
 
-body {
-  color: #333;
-  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-  font-size: 97%;
-  line-height: 20px;
-}
-
 p {
   margin-bottom: 10px;
   font-size: 76%;
@@ -53,7 +46,7 @@ a {
 }
 
 .elpriser-tab.chosen {
-  color: #000;
+  color: #fff;
   background-color: #f29091;
   border-style: dotted;
   border-color: rgba(0, 0, 0, 0);
@@ -61,6 +54,8 @@ a {
 
 .elpris-input-wrapper {
   flex: 1;
+  font-family: Strawford Light Webfont, sans-serif;
+  font-weight: 300;
   position: relative;
 }
 
@@ -79,7 +74,8 @@ a {
 }
 
 .elpriser-table-rubrik {
-  font-weight: 900;
+  font-family: Strawford Bold Webfont, sans-serif;
+  font-weight: 700;
 }
 
 .graf-wrapper {
@@ -130,11 +126,13 @@ a {
 .elprisapp {
   width: 100%;
   min-height: 110vh;
+  background-color: #fff0dd;
   flex-direction: row;
   justify-content: center;
   align-items: stretch;
-  font-family: Avenirltstd, sans-serif;
+  font-family: Strawford Light Webfont, sans-serif;
   font-size: 0.9rem;
+  font-weight: 300;
   line-height: 1.4rem;
   display: flex;
   position: relative;
@@ -170,8 +168,8 @@ a {
 
 .elprisapp-wrapper {
   width: 100%;
+  max-width: 1200px;
   min-width: 800px;
-  background-color: #fff0dd;
   margin-bottom: 0;
   padding: 2.5rem;
 }
@@ -250,7 +248,7 @@ a {
   }
 
   .graf-wrapper {
-    height: 35rem;
+    height: 25rem;
   }
 
   .elprisapp-topmenu {
@@ -263,21 +261,16 @@ a {
 }
 
 @font-face {
-  font-family: "Avenirltstd";
-  src: url("../fonts/AvenirLTStd-Heavy.woff2") format("woff2"),
-    url("../fonts/AvenirLTStd-Black.woff2") format("woff2"),
-    url("../fonts/AvenirLTStd-Heavy.ttf") format("truetype"),
-    url("../fonts/AvenirLTStd-Black.ttf") format("truetype");
-  font-weight: 900;
+  font-family: "Strawford Bold Webfont";
+  src: url("../fonts/strawford-bold-webfont.woff2") format("woff2");
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
-  font-family: "Avenirltstd";
-  src: url("../fonts/AvenirLTStd-Medium.woff2") format("woff2"),
-    url("../fonts/AvenirLTStd-Medium.ttf") format("truetype");
-  font-weight: 500;
+  font-family: "Strawford Light Webfont";
+  src: url("../fonts/strawford-light-webfont.woff2") format("woff2");
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }

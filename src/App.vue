@@ -44,7 +44,8 @@ input[type="input"]:focus {
   border-bottom-left-radius: 0.2rem;
   border-bottom-right-radius: 0.2rem;
   background-color: hsla(0, 0%, 100%, 1);
-  font-family: Avenirltstd;
+  font-family: Strawford Light Webfont, sans-serif;
+  font-weight: 300;
   font-size: 0.87rem;
   padding-top: 0.55rem;
   height: 2.9rem;
