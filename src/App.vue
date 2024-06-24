@@ -2,7 +2,7 @@
 import Selectors from "./components/Selectors.vue";
 import WorkspaceSelector from "./components/WorkspaceSelector.vue";
 import Table from "./components/Table.vue";
-import GraphNew from "./components/GraphNew.vue";
+import Graph from "./components/Graph.vue";
 import PriceSelector from "./components/PriceSelector.vue";
 import { Vue3Lottie } from "vue3-lottie";
 import "vue3-lottie/dist/style.css";
@@ -30,7 +30,7 @@ import loadAnim from "./documents/77076-loading.json";
           <Table :prices="prices" :area="selectArea" />
         </div>
         <div v-show="selectedTab === 1">
-          <GraphNew
+          <Graph
             :prices="prices"
             :comparePrices="comparePrices"
             :area="selectArea"

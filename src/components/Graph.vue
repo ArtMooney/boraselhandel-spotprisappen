@@ -1,33 +1,36 @@
 <template>
-  <div class="graf-wrapper w-embed">
-    <canvas ref="myChart"></canvas>
-  </div>
+  <Line id="my-chart-id" :options="chartOptions" :data="chartData" />
 </template>
 
 <script>
-// import Chart from "chart.js/auto";
-
+import { Line } from "vue-chartjs";
 import {
-  Chart,
-  LineController,
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
   LineElement,
   PointElement,
-  LinearScale,
   CategoryScale,
+  LinearScale,
   Filler,
 } from "chart.js";
 
-Chart.register(
-  LineController,
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
   LineElement,
   PointElement,
-  LinearScale,
   CategoryScale,
+  LinearScale,
   Filler,
 );
 
 export default {
-  name: "Graph",
+  name: "BarChart",
+
+  components: { Line },
 
   props: {
     prices: {
@@ -50,39 +53,36 @@ export default {
 
   data() {
     return {
-      tableLabels: [
-        "00 - 01",
-        "01 - 02",
-        "02 - 03",
-        "03 - 04",
-        "04 - 05",
-        "05 - 06",
-        "06 - 07",
-        "07 - 08",
-        "08 - 09",
-        "09 - 10",
-        "10 - 11",
-        "11 - 12",
-        "12 - 13",
-        "13 - 14",
-        "14 - 15",
-        "15 - 16",
-        "16 - 17",
-        "17 - 18",
-        "18 - 19",
-        "19 - 20",
-        "20 - 21",
-        "21 - 22",
-        "22 - 23",
-        "23 - 00",
-      ],
-
-      chartType: "line",
       chartData: {
-        labels: [],
+        labels: [
+          "00 - 01",
+          "01 - 02",
+          "02 - 03",
+          "03 - 04",
+          "04 - 05",
+          "05 - 06",
+          "06 - 07",
+          "07 - 08",
+          "08 - 09",
+          "09 - 10",
+          "10 - 11",
+          "11 - 12",
+          "12 - 13",
+          "13 - 14",
+          "14 - 15",
+          "15 - 16",
+          "16 - 17",
+          "17 - 18",
+          "18 - 19",
+          "19 - 20",
+          "20 - 21",
+          "21 - 22",
+          "22 - 23",
+          "23 - 00",
+        ],
         datasets: [
           {
-            label: "",
+            label: "1",
             backgroundColor: (context) => {
               const bgColor = [
                 "rgba(246,95,95,0.3)",
@@ -96,7 +96,6 @@ export default {
 
               const {
                 ctx,
-                data,
                 chartArea: { top, bottom },
               } = context.chart;
               const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
@@ -121,7 +120,6 @@ export default {
 
               const {
                 ctx,
-                data,
                 chartArea: { top, bottom },
               } = context.chart;
               const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
@@ -133,60 +131,36 @@ export default {
 
               return gradientBg;
             },
-            data: [],
             stepped: true,
             fill: true,
+          },
+          {
+            label: "2",
+            backgroundColor: "rgba(27, 110, 144, 0.3)",
+            borderColor: "rgba(0, 0, 0, 0.3)",
+            stepped: true,
+            borderDash: [5, 5],
+            fill: false,
           },
         ],
       },
       chartOptions: {
-        animations: {
-          tension: {
-            duration: 1000,
-            easing: "linear",
-            from: 1,
-            to: 0,
-            loop: true,
-          },
-        },
+        responsive: true,
         scales: {
           y: {
-            min: 0,
-            display: true,
-            title: {
-              display: true,
-              text: "öre/kWh",
-            },
+            beginAtZero: true,
           },
-        },
-        animation: {
-          duration: 0,
         },
         plugins: {
           tooltip: {
-            callbacks: {
-              label: function (context) {
-                return (
-                  (Math.round(context.parsed.y * 100) / 100).toFixed(2) +
-                  " öre/kWh"
-                );
-              },
-            },
+            enabled: false,
+          },
+          legend: {
+            display: false,
           },
         },
-        maintainAspectRatio: false,
       },
-
-      addedLabel: " Snittpris (öre/kWh)",
     };
-  },
-
-  async mounted() {
-    this.chartData.labels = this.tableLabels.map((label) =>
-      label.replaceAll(" ", ""),
-    );
-
-    this.createChart();
   },
 
   computed: {
@@ -195,138 +169,65 @@ export default {
     },
   },
 
+  mounted() {
+    this.updateChartData();
+  },
+
   methods: {
-    createChart() {
-      const chart = new Chart(this.$refs.myChart, {
-        type: this.chartType,
-        data: this.chartData,
-        options: this.chartOptions,
-      });
-
-      this.myChart = chart;
-    },
-
-    updateChart() {
-      const chart = this.myChart;
-      const area = parseInt(this.area) - 1;
-      const mainDataset = this.chartData.datasets[0];
-      const compareDataset = this.chartData.datasets[1];
-
-      mainDataset.data = this.currentPrices(this.prices);
-      mainDataset.label =
-        this.formatHeadingDate(this.prices[area].deliveryDateCET) +
-        this.addedLabel;
-
-      if (parseInt(this.compare) > 1) {
-        compareDataset.data = this.currentPrices(this.comparePrices);
-        compareDataset.label =
-          this.formatHeadingDate(this.comparePrices[area].deliveryDateCET) +
-          this.addedLabel;
-      }
-
-      if (chart.data.datasets.length > 1) {
-        compareDataset.data = this.currentPrices(this.comparePrices);
-        compareDataset.label =
-          this.formatHeadingDate(this.comparePrices[area].deliveryDateCET) +
-          this.addedLabel;
-      } else {
-        if (this.comparePrices.length > 0) {
-          this.chartData.datasets.push({
-            label:
-              this.formatHeadingDate(this.comparePrices[area].deliveryDateCET) +
-              this.addedLabel,
-            backgroundColor: "rgba(27, 110, 144, 0.3)",
-            borderColor: "rgba(0, 0, 0, 0.3)",
-            data: this.currentPrices(this.comparePrices),
-            stepped: true,
-            borderDash: [5, 5],
-          });
-        }
-      }
-
-      this.myChart.update();
-    },
-
-    removeDataset() {
-      const chart = this.myChart;
-
-      if (chart.data && chart.data.datasets.length > 1) {
-        chart.data.datasets.pop();
-      }
-    },
-
     currentPrices(priceList) {
       let prices = [];
 
       for (const price of priceList[this.areaIndex].prices) {
         prices.push(
           price.price
-            ? (parseFloat(price.price) / 10).toFixed(2).toString()
-            : "",
+            ? parseFloat((parseFloat(price.price) / 10).toFixed(2))
+            : null,
         );
       }
 
       return prices;
     },
 
-    formatHeadingDate(date) {
-      return new Date(date)
-        .toLocaleDateString("en-GB", {
-          day: "2-digit",
-          month: "short",
-          year: "numeric",
-        })
-        .replace(",", "");
+    updateChartData() {
+      this.chartData = {
+        ...this.chartData,
+        datasets: [
+          {
+            ...this.chartData.datasets[0],
+            label: "1",
+            data: this.prices.length > 0 ? this.currentPrices(this.prices) : [],
+          },
+          {
+            ...this.chartData.datasets[1],
+            label: "2",
+            data:
+              this.compare === "1"
+                ? []
+                : this.comparePrices.length > 0
+                  ? this.currentPrices(this.comparePrices)
+                  : [],
+          },
+        ],
+      };
     },
   },
 
   watch: {
     prices() {
-      console.log("PRICES", JSON.parse(JSON.stringify(this.prices)));
-      this.updateChart();
+      this.updateChartData();
     },
 
     comparePrices() {
-      this.updateChart();
-      this.removeDataset();
+      this.updateChartData();
+    },
+
+    area() {
+      this.updateChartData();
     },
 
     compare() {
-      // console.log("COMPARE", this.compare);
-      // if (this.compare === "1") {
-      //   this.removeDataset();
-      //   this.updateChart();
-      // }
+      this.updateChartData();
     },
   },
 };
 </script>
-
-<style scoped>
-@import "../css/normalize.css";
-@import "../css/components.css";
-@import "../css/elprisappen.css";
-
-.elpris-input {
-  -webkit-appearance: none;
-}
-
-input[type="input"]:focus {
-  outline: none;
-}
-
-.gradient-wait {
-  background: linear-gradient(-45deg, #eeeeee, #ffffff, #aaaaaa, #eeeeee);
-  background-size: 400% 400%;
-  animation: gradient 5s ease infinite;
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
-</style>
