@@ -1,15 +1,16 @@
 <template>
-  <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
+  <Line id="my-chart-id" :options="chartOptions" :data="chartData" />
 </template>
 
 <script>
-import { Bar } from "vue-chartjs";
+import { Line } from "vue-chartjs";
 import {
   Chart as ChartJS,
   Title,
   Tooltip,
   Legend,
-  BarElement,
+  LineElement,
+  PointElement,
   CategoryScale,
   LinearScale,
   Filler,
@@ -19,7 +20,8 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  BarElement,
+  LineElement,
+  PointElement,
   CategoryScale,
   LinearScale,
   Filler,
@@ -28,7 +30,7 @@ ChartJS.register(
 export default {
   name: "BarChart",
 
-  components: { Bar },
+  components: { Line },
 
   props: {
     prices: {
@@ -80,7 +82,7 @@ export default {
         ],
         datasets: [
           {
-            label: this.area,
+            label: "1",
             backgroundColor: (context) => {
               const bgColor = [
                 "rgba(246,95,95,0.3)",
@@ -94,7 +96,6 @@ export default {
 
               const {
                 ctx,
-                data,
                 chartArea: { top, bottom },
               } = context.chart;
               const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
@@ -119,7 +120,6 @@ export default {
 
               const {
                 ctx,
-                data,
                 chartArea: { top, bottom },
               } = context.chart;
               const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
@@ -131,65 +131,16 @@ export default {
 
               return gradientBg;
             },
-            borderWidth: 1,
             stepped: true,
             fill: true,
           },
           {
-            label: this.compare,
-            backgroundColor: (context) => {
-              const bgColor = [
-                "rgba(246,95,95,0.3)",
-                "rgba(236,193,64,0.3)",
-                "rgba(155,228,126,0.3)",
-              ];
-
-              if (!context.chart.chartArea) {
-                return;
-              }
-
-              const {
-                ctx,
-                data,
-                chartArea: { top, bottom },
-              } = context.chart;
-              const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
-              const colorLayers = 1 / bgColor.length;
-
-              for (let i = 0; i < bgColor.length; i++) {
-                gradientBg.addColorStop(i * colorLayers, bgColor[i]);
-              }
-
-              return gradientBg;
-            },
-            borderColor: (context) => {
-              const bgColor = [
-                "rgba(246,95,95,1)",
-                "rgba(236,193,64,1)",
-                "rgba(155,228,126,1)",
-              ];
-
-              if (!context.chart.chartArea) {
-                return;
-              }
-
-              const {
-                ctx,
-                data,
-                chartArea: { top, bottom },
-              } = context.chart;
-              const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
-              const colorLayers = 1 / bgColor.length;
-
-              for (let i = 0; i < bgColor.length; i++) {
-                gradientBg.addColorStop(i * colorLayers, bgColor[i]);
-              }
-
-              return gradientBg;
-            },
-            borderWidth: 1,
+            label: "2",
+            backgroundColor: "rgba(27, 110, 144, 0.3)",
+            borderColor: "rgba(0, 0, 0, 0.3)",
             stepped: true,
-            fill: true,
+            borderDash: [5, 5],
+            fill: false,
           },
         ],
       },
@@ -198,6 +149,14 @@ export default {
         scales: {
           y: {
             beginAtZero: true,
+          },
+        },
+        plugins: {
+          tooltip: {
+            enabled: false,
+          },
+          legend: {
+            display: false,
           },
         },
       },
@@ -230,41 +189,26 @@ export default {
     },
 
     updateChartData() {
-      if (this.compare === "1") {
-        // only one dataset
-        this.chartData = {
-          ...this.chartData,
-          datasets: [
-            {
-              ...this.chartData.datasets[0],
-              label: "1",
-              data:
-                this.prices.length > 0 ? this.currentPrices(this.prices) : [],
-            },
-          ],
-        };
-      } else {
-        // two datasets
-        this.chartData = {
-          ...this.chartData,
-          datasets: [
-            {
-              ...this.chartData.datasets[0],
-              label: "1",
-              data:
-                this.prices.length > 0 ? this.currentPrices(this.prices) : [],
-            },
-            {
-              ...this.chartData.datasets[1],
-              label: "2",
-              data:
-                this.comparePrices.length > 0
+      this.chartData = {
+        ...this.chartData,
+        datasets: [
+          {
+            ...this.chartData.datasets[0],
+            label: "1",
+            data: this.prices.length > 0 ? this.currentPrices(this.prices) : [],
+          },
+          {
+            ...this.chartData.datasets[1],
+            label: "2",
+            data:
+              this.compare === "1"
+                ? []
+                : this.comparePrices.length > 0
                   ? this.currentPrices(this.comparePrices)
                   : [],
-            },
-          ],
-        };
-      }
+          },
+        ],
+      };
     },
   },
 
