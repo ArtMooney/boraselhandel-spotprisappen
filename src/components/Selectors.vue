@@ -70,8 +70,6 @@ import Dropdown from "../elements/Dropdown.vue";
 export default {
   name: "Selectors",
 
-  emits: ["area", "period", "date", "compare"],
-
   data() {
     return {
       selectArea: "3",
@@ -82,6 +80,16 @@ export default {
   },
 
   methods: {
+    getDateString(date) {
+      if (date === null) return;
+
+      const year = date.getFullYear();
+      const month = ("0" + (date.getMonth() + 1)).slice(-2);
+      const day = ("0" + date.getDate()).slice(-2);
+
+      return `${year}-${month}-${day}`;
+    },
+
     handleSelectArea(selectInput) {
       this.selectArea = selectInput.target.value;
     },
@@ -110,15 +118,25 @@ export default {
     },
 
     selectDate() {
-      if (new Date() !== this.selectDate) {
-        // Compare must be reset if using other date than todays
-        this.selectCompare = "1";
+      if (
+        this.getDateString(new Date()) !==
+          this.getDateString(this.selectDate) &&
+        this.selectCompare !== "1"
+      ) {
+        this.$nextTick(() => {
+          this.selectCompare = "1";
+        });
       }
 
       this.$emit("date", this.selectDate);
     },
 
     selectCompare() {
+      if (this.selectCompare !== "1") {
+        this.selectPeriod = "1";
+        this.selectDate = new Date();
+      }
+
       this.$emit("compare", this.selectCompare);
     },
   },

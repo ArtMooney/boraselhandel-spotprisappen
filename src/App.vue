@@ -137,6 +137,8 @@ export default {
     },
 
     async handleSelectCompare(compare) {
+      this.selectedTab = 1;
+
       if (compare === "2") {
         this.comparePrices = await this.getPrices(
           new Date(new Date().setDate(new Date().getDate() - 1)),
