@@ -25,6 +25,13 @@
 export default {
   name: "WorkspaceSelector",
 
+  props: {
+    tab: {
+      type: Number,
+      default: 0,
+    },
+  },
+
   data() {
     return {
       selectedTab: 0,
@@ -40,6 +47,12 @@ export default {
     handleGraph() {
       this.selectedTab = 1;
       this.$emit("input", this.selectedTab);
+    },
+  },
+
+  watch: {
+    tab() {
+      this.selectedTab = this.tab;
     },
   },
 };

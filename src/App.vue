@@ -13,6 +13,7 @@ import loadAnim from "./documents/77076-loading.json";
   <div elpriser-app="true" class="elprisapp">
     <div class="elprisapp-wrapper w-form">
       <Selectors
+        :date="selectDate"
         @area="handleSelectArea"
         @period="handleSelectPeriod"
         @date="handleSelectDate"
@@ -23,7 +24,7 @@ import loadAnim from "./documents/77076-loading.json";
         <div>{{ statusMessage }}</div>
       </div>
 
-      <WorkspaceSelector @input="handleSelectTab" />
+      <WorkspaceSelector :tab="selectedTab" @input="handleSelectTab" />
 
       <div v-show="!loader" class="elprisapp-tabs">
         <div v-show="selectedTab === 0">
@@ -38,7 +39,7 @@ import loadAnim from "./documents/77076-loading.json";
           />
         </div>
 
-        <PriceSelector />
+        <PriceSelector :date="selectDate" @date="handleSelectDate" />
       </div>
     </div>
 
@@ -50,7 +51,7 @@ import loadAnim from "./documents/77076-loading.json";
 
 <script>
 export default {
-  name: "Borås Elhandel - Spotprisappen",
+  name: "Spotprisappen",
 
   data() {
     return {
@@ -64,7 +65,7 @@ export default {
       missingPricesMessage:
         "Prisuppskattningen för morgondagens priser är tillgängliga varje dag från runt kl. 13.00.",
       graph: "graph",
-      selectedTab: 1,
+      selectedTab: 0,
       loadAnim,
       loader: true,
       gradientBg: null,
@@ -132,7 +133,7 @@ export default {
     },
 
     async handleSelectDate(date) {
-      this.selectDate = date;
+      this.selectDate = this.getDateString(date);
       this.prices = await this.getPrices(date);
     },
 

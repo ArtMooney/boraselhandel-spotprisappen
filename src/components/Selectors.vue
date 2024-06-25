@@ -70,6 +70,13 @@ import Dropdown from "../elements/Dropdown.vue";
 export default {
   name: "Selectors",
 
+  props: {
+    date: {
+      type: String,
+      default: "",
+    },
+  },
+
   data() {
     return {
       selectArea: "3",
@@ -138,6 +145,10 @@ export default {
       }
 
       this.$emit("compare", this.selectCompare);
+    },
+
+    date() {
+      this.selectDate = new Date(this.date);
     },
   },
 };

@@ -5,7 +5,7 @@
       href="#app"
       @click="handleDagens"
       :class="[
-        visaPris === 0
+        visaPris === 1
           ? 'elpriser-tab chosen w-button'
           : 'elpriser-tab w-button',
       ]"
@@ -15,7 +15,7 @@
       href="#app"
       @click="handleMorgondagens"
       :class="[
-        visaPris === 1
+        visaPris === 2
           ? 'elpriser-tab chosen w-button'
           : 'elpriser-tab w-button',
       ]"
@@ -27,6 +27,15 @@
 
 <script>
 export default {
+  name: "PriceSelector",
+
+  props: {
+    date: {
+      type: String,
+      default: "",
+    },
+  },
+
   data() {
     return {
       visaPris: 0,
@@ -34,14 +43,42 @@ export default {
   },
 
   methods: {
+    getDateString(date) {
+      if (date === null) return;
+
+      const year = date.getFullYear();
+      const month = ("0" + (date.getMonth() + 1)).slice(-2);
+      const day = ("0" + date.getDate()).slice(-2);
+
+      return `${year}-${month}-${day}`;
+    },
+
     handleDagens() {
-      this.selectPeriod = "1";
-      this.visaPris = 0;
+      this.$emit("date", new Date());
     },
 
     handleMorgondagens() {
-      this.selectPeriod = "2";
-      this.visaPris = 1;
+      this.$emit(
+        "date",
+        new Date(new Date().setDate(new Date().getDate() + 1)),
+      );
+    },
+  },
+
+  watch: {
+    date() {
+      const todaysDate = this.getDateString(new Date());
+      const tomorrowsDate = this.getDateString(
+        new Date(new Date().setDate(new Date().getDate() + 1)),
+      );
+
+      if (this.date === todaysDate) {
+        this.visaPris = 1;
+      } else if (this.date === tomorrowsDate) {
+        this.visaPris = 2;
+      } else {
+        this.visaPris = 0;
+      }
     },
   },
 };
