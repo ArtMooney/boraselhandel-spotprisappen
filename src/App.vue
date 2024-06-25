@@ -98,11 +98,7 @@ export default {
 
       const prices = await res.json();
 
-      if (
-        prices &&
-        prices[parseInt(this.selectArea)] &&
-        prices[parseInt(this.selectArea)].status === "Missing"
-      ) {
+      if (prices && prices[0] && prices[0].status === "Missing") {
         this.statusMessage = this.missingPricesMessage;
         this.messageBox = "flex";
       } else {
