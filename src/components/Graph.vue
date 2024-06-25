@@ -28,7 +28,7 @@ ChartJS.register(
 );
 
 export default {
-  name: "BarChart",
+  name: "Graph",
 
   components: { Line },
 

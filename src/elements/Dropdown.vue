@@ -2,7 +2,7 @@
   <select
     :name="name"
     :data-name="name"
-    v-model="selectInput"
+    v-model="selectedValue"
     class="elpris-input w-select"
   >
     <option
@@ -24,20 +24,26 @@ export default {
       type: String,
       required: true,
     },
-    defaultValue: {
-      type: String,
-      required: true,
-    },
     optionsList: {
       type: Array,
+      required: true,
+    },
+    modelValue: {
+      type: String,
       required: true,
     },
   },
 
   data() {
     return {
-      selectInput: this.defaultValue,
+      selectedValue: this.modelValue,
     };
+  },
+
+  watch: {
+    modelValue(newValue) {
+      this.selectedValue = newValue;
+    },
   },
 };
 </script>

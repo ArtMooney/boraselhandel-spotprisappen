@@ -10,7 +10,7 @@ import Dropdown from "../elements/Dropdown.vue";
       <div>Välj elområde</div>
       <Dropdown
         name="elomrade"
-        default-value="3"
+        v-model="selectArea"
         :options-list="[
           { value: 1, label: '1 - Norra Sverige' },
           { value: 2, label: '2 - Norra Mellansverige' },
@@ -25,7 +25,7 @@ import Dropdown from "../elements/Dropdown.vue";
       <div>Välj period</div>
       <Dropdown
         name="period"
-        default-value="1"
+        v-model="selectPeriod"
         :options-list="[
           { value: 1, label: 'En dag (per timme)' },
           { value: 2, label: 'En dag framåt (per timme)' },
@@ -54,7 +54,7 @@ import Dropdown from "../elements/Dropdown.vue";
       <div>Jämför med</div>
       <Dropdown
         name="jamfor"
-        default-value="1"
+        v-model="selectCompare"
         :options-list="[
           { value: 1, label: 'Inget' },
           { value: 2, label: 'Föregående dag' },
@@ -74,10 +74,10 @@ export default {
 
   data() {
     return {
-      selectArea: "",
-      selectPeriod: "",
+      selectArea: "3",
+      selectPeriod: "1",
       selectDate: new Date(),
-      selectCompare: "",
+      selectCompare: "1",
     };
   },
 
@@ -110,6 +110,11 @@ export default {
     },
 
     selectDate() {
+      if (new Date() !== this.selectDate) {
+        // Compare must be reset if using other date than todays
+        this.selectCompare = "1";
+      }
+
       this.$emit("date", this.selectDate);
     },
 
