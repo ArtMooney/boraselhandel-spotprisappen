@@ -59,23 +59,15 @@ export default {
       apiKey: "PeKnqf7kFD2ejLYvv63a",
       prices: [],
       comparePrices: [],
-      priceList: [],
-      priceData: [],
-
       missingPricesMessage:
         "Prisuppskattningen för morgondagens priser är tillgängliga varje dag från runt kl. 13.00.",
-      graph: "graph",
       selectedTab: 0,
       loadAnim,
       loader: true,
-      gradientBg: null,
-      visaPris: 0,
-
       selectArea: "3",
       selectPeriod: "1",
       selectDate: "",
       selectCompare: "1",
-
       messageBox: "none",
       statusMessage: "-",
     };
