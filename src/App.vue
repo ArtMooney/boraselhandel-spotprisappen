@@ -82,7 +82,7 @@ export default {
   },
 
   async created() {
-    this.prices = await this.getPrices(new Date());
+    this.prices = await this.getPrices(this.getDateString(new Date()));
     this.loader = false;
   },
 
@@ -90,7 +90,7 @@ export default {
     async getPrices(date) {
       if (isNaN(Date.parse(date))) return; // make sure date is valid
 
-      const res = await fetch(this.pricesWebhook + this.getDateString(date), {
+      const res = await fetch(this.pricesWebhook + date, {
         method: "GET",
         headers: {
           Authorization: "Bearer " + this.apiKey,
@@ -132,9 +132,10 @@ export default {
       this.selectPeriod = period;
     },
 
-    async handleSelectDate(date) {
-      this.selectDate = this.getDateString(date);
-      this.prices = await this.getPrices(date);
+    handleSelectDate(date) {
+      if (date !== null && date !== "Invalid Date") {
+        this.selectDate = date;
+      }
     },
 
     async handleSelectCompare(compare) {
@@ -142,15 +143,25 @@ export default {
 
       if (compare === "2") {
         this.comparePrices = await this.getPrices(
-          new Date(new Date().setDate(new Date().getDate() - 1)),
+          this.getDateString(
+            new Date(new Date().setDate(new Date().getDate() - 1)),
+          ),
         );
       } else if (compare === "3") {
         this.comparePrices = await this.getPrices(
-          new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
+          this.getDateString(
+            new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
+          ),
         );
       }
 
       this.selectCompare = compare;
+    },
+  },
+
+  watch: {
+    async selectDate() {
+      this.prices = await this.getPrices(this.selectDate);
     },
   },
 };

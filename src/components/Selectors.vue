@@ -135,7 +135,7 @@ export default {
         });
       }
 
-      this.$emit("date", this.selectDate);
+      this.$emit("date", this.getDateString(this.selectDate));
     },
 
     selectCompare() {
