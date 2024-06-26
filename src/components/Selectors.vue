@@ -5,8 +5,10 @@ import Dropdown from "../elements/Dropdown.vue";
 </script>
 
 <template>
-  <div class="elprisapp-topmenu">
-    <div class="elpris-input-wrapper">
+  <div
+    class="grid gap-4 grid-rows-auto grid-cols-1 auto-cols-fr items-center relative sm:grid-cols-2 lg:grid-cols-4"
+  >
+    <div>
       <div>Välj elområde</div>
       <Dropdown
         name="elomrade"
@@ -21,7 +23,7 @@ import Dropdown from "../elements/Dropdown.vue";
       />
     </div>
 
-    <div class="elpris-input-wrapper">
+    <div>
       <div>Välj period</div>
       <Dropdown
         name="period"
@@ -34,7 +36,7 @@ import Dropdown from "../elements/Dropdown.vue";
       />
     </div>
 
-    <div class="elpris-input-wrapper">
+    <div>
       <div>Välj startdatum</div>
       <div class="datepicker-wrapper w-embed">
         <VueDatePicker
@@ -50,7 +52,7 @@ import Dropdown from "../elements/Dropdown.vue";
       </div>
     </div>
 
-    <div class="elpris-input-wrapper">
+    <div>
       <div>Jämför med</div>
       <Dropdown
         name="jamfor"
