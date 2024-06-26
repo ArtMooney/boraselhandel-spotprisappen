@@ -10,8 +10,10 @@ import loadAnim from "./documents/77076-loading.json";
 </script>
 
 <template>
-  <div elpriser-app="true" class="elprisapp">
-    <div class="elprisapp-wrapper w-form">
+  <div
+    class="w-full bg-[#fff0dd] font-straw_light text-base font-normal text-black leading-7 relative"
+  >
+    <div class="mb-0 p-4 md:p-8">
       <Selectors
         :date="selectDate"
         @area="handleSelectArea"
@@ -20,13 +22,16 @@ import loadAnim from "./documents/77076-loading.json";
         @compare="handleSelectCompare"
       />
 
-      <div v-bind:style="{ display: messageBox }" class="message-box">
+      <div
+        :style="{ display: messageBox }"
+        class="bg-[#fcc] justify-start items-center mt-4 mb-4 p-2"
+      >
         <div>{{ statusMessage }}</div>
       </div>
 
       <WorkspaceSelector :tab="selectedTab" @input="handleSelectTab" />
 
-      <div v-show="!loader" class="elprisapp-tabs">
+      <div v-show="!loader" class="justify-center items-center">
         <div v-show="selectedTab === 0">
           <Table :prices="prices" :area="selectArea" />
         </div>
@@ -43,7 +48,10 @@ import loadAnim from "./documents/77076-loading.json";
       </div>
     </div>
 
-    <div v-if="loader" class="loader-overlay">
+    <div
+      v-if="loader"
+      class="items-center flex absolute top-0 bottom-0 left-0 right-0"
+    >
       <Vue3Lottie :animationData="loadAnim" :height="200" :width="200" />
     </div>
   </div>
@@ -63,7 +71,7 @@ export default {
         "Prisuppskattningen för morgondagens priser är tillgängliga varje dag från runt kl. 13.00.",
       selectedTab: 0,
       loadAnim,
-      loader: true,
+      loader: false,
       selectArea: "3",
       selectPeriod: "1",
       selectDate: "",
@@ -75,7 +83,7 @@ export default {
 
   async created() {
     this.prices = await this.getPrices(this.getDateString(new Date()));
-    this.loader = false;
+    // this.loader = false;
   },
 
   methods: {
