@@ -22,7 +22,6 @@ import Button from "../elements/Button.vue";
 
 export default {
   name: "WorkspaceSelector",
-  components: { Button },
 
   props: {
     tab: {
