@@ -6,7 +6,7 @@ import Dropdown from "../elements/Dropdown.vue";
 
 <template>
   <div
-    class="grid gap-4 grid-rows-auto grid-cols-1 auto-cols-fr items-center relative sm:grid-cols-2 lg:grid-cols-4"
+    class="grid-rows-auto relative grid auto-cols-fr grid-cols-1 items-center gap-4 sm:grid-cols-2 lg:grid-cols-4"
   >
     <div>
       <div>Välj elområde</div>
@@ -127,17 +127,19 @@ export default {
     },
 
     selectDate() {
-      if (
-        this.getDateString(new Date()) !==
-          this.getDateString(this.selectDate) &&
-        this.selectCompare !== "1"
-      ) {
-        this.$nextTick(() => {
-          this.selectCompare = "1";
-        });
-      }
+      if (this.selectDate) {
+        if (
+          this.getDateString(new Date()) !==
+            this.getDateString(this.selectDate) &&
+          this.selectCompare !== "1"
+        ) {
+          this.$nextTick(() => {
+            this.selectCompare = "1";
+          });
+        }
 
-      this.$emit("date", this.getDateString(this.selectDate));
+        this.$emit("date", this.getDateString(this.selectDate));
+      }
     },
 
     selectCompare() {
