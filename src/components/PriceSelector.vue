@@ -54,13 +54,15 @@ export default {
     },
 
     handleDagens() {
-      this.$emit("date", new Date());
+      this.$emit("date", this.getDateString(new Date()));
     },
 
     handleMorgondagens() {
       this.$emit(
         "date",
-        new Date(new Date().setDate(new Date().getDate() + 1)),
+        this.getDateString(
+          new Date(new Date().setDate(new Date().getDate() + 1)),
+        ),
       );
     },
   },
