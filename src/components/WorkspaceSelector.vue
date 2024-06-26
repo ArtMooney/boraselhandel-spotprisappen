@@ -53,9 +53,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-@import "../css/normalize.css";
-@import "../css/components.css";
-@import "../css/elprisappen.css";
-</style>
