@@ -1,29 +1,66 @@
 <template>
-  <div class="w-layout-grid elpris-grid">
-    <div class="elpris-column">
-      <div class="elpriser-table-rubrik">Tidsperiod</div>
+  <div
+    class="grid-rows-auto mb-8 grid auto-cols-fr grid-cols-2 gap-0 bg-white"
+    style="border-top: 1px solid #8d8d8d"
+  >
+    <div
+      class="flex items-center justify-center p-2"
+      style="border: 1px solid #8d8d8d; border-top-width: 0"
+    >
+      <div class="font-straw_bold font-bold">Tidsperiod</div>
     </div>
-    <div class="elpris-column right">
-      <div class="elpriser-table-rubrik">
+    <div
+      class="flex items-center justify-center p-2"
+      style="
+        border: 1px solid #8d8d8d;
+        border-top-width: 0;
+        border-left-width: 0;
+      "
+    >
+      <div class="font-straw_bold font-bold">
         {{ formattedHeadingDate }}
         Snittpris (öre/kWh)
       </div>
     </div>
+
     <template v-for="(label, index) of tableLabels" :key="label + '-' + index">
-      <div class="elpris-column">
+      <div
+        class="flex items-center justify-center p-2"
+        style="border: 1px solid #8d8d8d; border-top-width: 0"
+      >
         <div>{{ label }}</div>
       </div>
-      <div class="elpris-column right">
+      <div
+        class="flex items-center justify-center p-2"
+        style="
+          border: 1px solid #8d8d8d;
+          border-top-width: 0;
+          border-left-width: 0;
+        "
+      >
         <div>{{ formattedPrices[index] }}</div>
       </div>
     </template>
   </div>
 
-  <div class="w-layout-grid elpris-grid">
-    <div class="elpris-column">
+  <div
+    class="grid-rows-auto mb-8 grid auto-cols-fr grid-cols-2 gap-0 bg-white"
+    style="border-top: 1px solid #8d8d8d"
+  >
+    <div
+      class="flex items-center justify-center p-2"
+      style="border: 1px solid #8d8d8d; border-top-width: 0"
+    >
       <div>Medelpris</div>
     </div>
-    <div class="elpris-column right">
+    <div
+      class="flex items-center justify-center p-2"
+      style="
+        border: 1px solid #8d8d8d;
+        border-top-width: 0;
+        border-left-width: 0;
+      "
+    >
       <div>{{ formattedAveragePrice }}</div>
     </div>
   </div>
