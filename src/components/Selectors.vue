@@ -154,31 +154,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.elpris-input {
-  -webkit-appearance: none;
-}
-
-input[type="input"]:focus {
-  outline: none;
-}
-
-.gradient-wait {
-  background: linear-gradient(-45deg, #eeeeee, #ffffff, #aaaaaa, #eeeeee);
-  background-size: 400% 400%;
-  animation: gradient 5s ease infinite;
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
-</style>
-
 <style lang="scss">
 .dp-custom-input {
   margin-bottom: 0px;

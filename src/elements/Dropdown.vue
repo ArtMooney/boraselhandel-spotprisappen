@@ -3,7 +3,7 @@
     :name="name"
     :data-name="name"
     v-model="selectedValue"
-    class="elpris-input w-select"
+    class="custom-select input h-12 w-full bg-white border-1 border-solid border-[#8d8d8d] rounded mb-0 p-2 focus:outline-none"
   >
     <option
       v-for="option in optionsList"
@@ -47,3 +47,11 @@ export default {
   },
 };
 </script>
+
+<style>
+.custom-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+</style>
