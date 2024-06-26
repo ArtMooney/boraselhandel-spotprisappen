@@ -3,8 +3,8 @@
     @click="handleClick"
     :class="[
       modeSelected
-        ? 'min-w-36 sm:min-w-48 bg-transparent border-4 border-dashed border-[#57a3af] rounded-xl m-2 p-2.5 font-straw_bold text-lg transition-transform duration-200 text-white bg-[#f29091] border-transparent'
-        : 'min-w-36 sm:min-w-48 bg-transparent border-4 border-dashed border-[#57a3af] rounded-xl m-2 p-2.5 font-straw_bold text-lg transition-transform duration-200',
+        ? 'm-2 min-w-36 rounded-xl border-4 border-dashed border-[#57a3af] border-transparent bg-[#f29091] p-2.5 font-straw_bold text-lg text-white transition-transform duration-200 sm:min-w-48'
+        : 'm-2 min-w-36 rounded-xl border-4 border-dashed border-[#57a3af] bg-transparent p-2.5 font-straw_bold text-lg transition-transform duration-200 sm:min-w-48',
     ]"
   >
     {{ text }}
