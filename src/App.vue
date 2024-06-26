@@ -11,7 +11,7 @@ import loadAnim from "./documents/77076-loading.json";
 
 <template>
   <div
-    class="w-full bg-[#fff0dd] font-straw_light text-base font-normal text-black leading-7 relative"
+    class="relative w-full bg-[#fff0dd] font-straw_light text-base font-normal leading-7 text-black"
   >
     <div class="mb-0 p-4 md:p-8">
       <Selectors
@@ -24,14 +24,14 @@ import loadAnim from "./documents/77076-loading.json";
 
       <div
         :style="{ display: messageBox }"
-        class="bg-[#fcc] justify-start items-center mt-4 mb-4 p-2"
+        class="mb-4 mt-4 items-center justify-start bg-[#fcc] p-2"
       >
         <div>{{ statusMessage }}</div>
       </div>
 
       <WorkspaceSelector :tab="selectedTab" @input="handleSelectTab" />
 
-      <div v-show="!loader" class="justify-center items-center">
+      <div v-show="!loader" class="items-center justify-center">
         <div v-show="selectedTab === 0">
           <Table :prices="prices" :area="selectArea" />
         </div>
@@ -50,7 +50,7 @@ import loadAnim from "./documents/77076-loading.json";
 
     <div
       v-if="loader"
-      class="items-center flex absolute top-0 bottom-0 left-0 right-0"
+      class="absolute bottom-0 left-0 right-0 top-0 flex items-center"
     >
       <Vue3Lottie :animationData="loadAnim" :height="200" :width="200" />
     </div>
@@ -69,9 +69,9 @@ export default {
       comparePrices: [],
       missingPricesMessage:
         "Prisuppskattningen för morgondagens priser är tillgängliga varje dag från runt kl. 13.00.",
-      selectedTab: 0,
+      selectedTab: 1,
       loadAnim,
-      loader: false,
+      loader: true,
       selectArea: "3",
       selectPeriod: "1",
       selectDate: "",
@@ -83,7 +83,7 @@ export default {
 
   async created() {
     this.prices = await this.getPrices(this.getDateString(new Date()));
-    // this.loader = false;
+    this.loader = false;
   },
 
   methods: {
