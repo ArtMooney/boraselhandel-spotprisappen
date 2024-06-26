@@ -18,8 +18,6 @@ import Button from "../elements/Button.vue";
 </template>
 
 <script>
-import Button from "../elements/Button.vue";
-
 export default {
   name: "WorkspaceSelector",
 
