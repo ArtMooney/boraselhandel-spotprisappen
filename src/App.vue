@@ -69,7 +69,7 @@ export default {
       comparePrices: [],
       missingPricesMessage:
         "Prisuppskattningen för morgondagens priser är tillgängliga varje dag från runt kl. 13.00.",
-      selectedTab: 0,
+      selectedTab: 1,
       loadAnim,
       loader: false,
       selectArea: "3",
