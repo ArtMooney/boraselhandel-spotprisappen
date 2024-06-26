@@ -44,7 +44,7 @@ import Dropdown from "../elements/Dropdown.vue";
           auto-apply=""
           :min-date="'2014-01-01'"
           :max-date="new Date()"
-          input-class-name="dp-custom-input"
+          input-class-name="h-12 w-full border-1 border-solid border-[#8d8d8d] rounded mb-0 py-1 text-base"
         >
         </VueDatePicker>
       </div>
@@ -153,33 +153,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.dp-custom-input {
-  margin-bottom: 0px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: hsla(0, 0%, 55.33%, 1);
-  border-right-style: solid;
-  border-right-width: 1px;
-  border-right-color: hsla(0, 0%, 55.33%, 1);
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: hsla(0, 0%, 55.33%, 1);
-  border-left-style: solid;
-  border-left-width: 1px;
-  border-left-color: hsla(0, 0%, 55.33%, 1);
-  border-top-left-radius: 0.2rem;
-  border-top-right-radius: 0.2rem;
-  border-bottom-left-radius: 0.2rem;
-  border-bottom-right-radius: 0.2rem;
-  background-color: hsla(0, 0%, 100%, 1);
-  font-family:
-    Strawford Light Webfont,
-    sans-serif;
-  font-weight: 300;
-  font-size: 0.87rem;
-  padding-top: 0.55rem;
-  height: 2.9rem;
-}
-</style>
