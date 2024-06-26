@@ -35,7 +35,10 @@ import loadAnim from "./documents/77076-loading.json";
         <div v-show="selectedTab === 0">
           <Table :prices="prices" :area="selectArea" />
         </div>
-        <div v-show="selectedTab === 1">
+        <div
+          v-show="selectedTab === 1"
+          class="h-[30rem] min-h-[30rem] lg:h-[50rem] lg:min-h-[50rem]"
+        >
           <Graph
             :prices="prices"
             :comparePrices="comparePrices"

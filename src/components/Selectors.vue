@@ -38,7 +38,7 @@ import Dropdown from "../elements/Dropdown.vue";
 
     <div>
       <div>Välj startdatum</div>
-      <div class="datepicker-wrapper w-embed">
+      <div class="relative flex items-center justify-center">
         <VueDatePicker
           v-model="selectDate"
           :format="'yyyy-MM-dd'"

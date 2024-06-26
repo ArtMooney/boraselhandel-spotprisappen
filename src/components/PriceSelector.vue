@@ -3,8 +3,8 @@ import Button from "../elements/Button.vue";
 </script>
 
 <template>
-  <div class="elprisapp-tabell-meny">
-    <div class="meny-title-text">Visa pris</div>
+  <div class="mb-6 mt-10 flex flex-wrap items-center justify-center">
+    <div class="flex w-full items-center justify-center pb-4">Visa pris</div>
     <Button text="Dagens" :modeSelected="chosen === 1" @click="handleDagens" />
     <Button
       text="Morgondagens"

@@ -3,7 +3,7 @@ import Button from "../elements/Button.vue";
 </script>
 
 <template>
-  <div class="elprisapp-tabell-meny">
+  <div class="mb-6 mt-10 flex flex-wrap items-center justify-center">
     <Button
       text="Tabell"
       :modeSelected="selectedTab === 0"
@@ -30,7 +30,7 @@ export default {
 
   data() {
     return {
-      selectedTab: 0,
+      selectedTab: 1,
     };
   },
 

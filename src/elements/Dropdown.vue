@@ -3,7 +3,7 @@
     :name="name"
     :data-name="name"
     v-model="selectedValue"
-    class="custom-select input h-12 w-full bg-white border-1 border-solid border-[#8d8d8d] rounded mb-0 px-3 py-1 focus:outline-none"
+    class="custom-select input border-1 mb-0 h-12 w-full rounded border-solid border-[#8d8d8d] bg-white px-3 py-1 text-base font-normal focus:outline-none"
   >
     <option
       v-for="option in optionsList"
