@@ -1,27 +1,16 @@
+<script setup>
+import Button from "../elements/Button.vue";
+</script>
+
 <template>
   <div class="elprisapp-tabell-meny">
     <div class="meny-title-text">Visa pris</div>
-    <a
-      href="#app"
-      @click="handleDagens"
-      :class="[
-        visaPris === 1
-          ? 'elpriser-tab chosen w-button'
-          : 'elpriser-tab w-button',
-      ]"
-      >Dagens</a
-    >
-    <a
-      href="#app"
+    <Button text="Dagens" :modeSelected="chosen === 1" @click="handleDagens" />
+    <Button
+      text="Morgondagens"
+      :modeSelected="chosen === 2"
       @click="handleMorgondagens"
-      :class="[
-        visaPris === 2
-          ? 'elpriser-tab chosen w-button'
-          : 'elpriser-tab w-button',
-      ]"
-      class="elpriser-tab w-button"
-      >Morgondagens<br
-    /></a>
+    />
   </div>
 </template>
 
@@ -38,7 +27,7 @@ export default {
 
   data() {
     return {
-      visaPris: 0,
+      chosen: 0,
     };
   },
 
@@ -75,11 +64,11 @@ export default {
       );
 
       if (this.date === todaysDate) {
-        this.visaPris = 1;
+        this.chosen = 1;
       } else if (this.date === tomorrowsDate) {
-        this.visaPris = 2;
+        this.chosen = 2;
       } else {
-        this.visaPris = 0;
+        this.chosen = 0;
       }
     },
   },

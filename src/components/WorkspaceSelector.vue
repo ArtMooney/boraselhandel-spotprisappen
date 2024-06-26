@@ -1,29 +1,28 @@
+<script setup>
+import Button from "../elements/Button.vue";
+</script>
+
 <template>
   <div class="elprisapp-tabell-meny">
-    <a
+    <Button
+      text="Tabell"
+      :modeSelected="selectedTab === 0"
       @click="handleTabell"
-      :class="[
-        selectedTab === 0
-          ? 'elpriser-tab chosen w-button'
-          : 'elpriser-tab w-button',
-      ]"
-      >Tabell</a
-    >
-    <a
+    />
+    <Button
+      text="Graf"
+      :modeSelected="selectedTab === 1"
       @click="handleGraph"
-      :class="[
-        selectedTab === 1
-          ? 'elpriser-tab chosen w-button'
-          : 'elpriser-tab w-button',
-      ]"
-      >Graf</a
-    >
+    />
   </div>
 </template>
 
 <script>
+import Button from "../elements/Button.vue";
+
 export default {
   name: "WorkspaceSelector",
+  components: { Button },
 
   props: {
     tab: {
