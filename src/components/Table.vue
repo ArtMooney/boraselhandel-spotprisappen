@@ -131,7 +131,7 @@ export default {
       return prices.map((priceObj) =>
         priceObj.price
           ? (parseFloat(priceObj.price) / 10).toFixed(2).toString()
-          : "",
+          : "0",
       );
     },
 

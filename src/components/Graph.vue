@@ -182,7 +182,7 @@ export default {
         prices.push(
           price.price
             ? parseFloat((parseFloat(price.price) / 10).toFixed(2))
-            : null,
+            : 0,
         );
       }
 
