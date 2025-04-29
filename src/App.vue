@@ -66,7 +66,7 @@ export default {
 
   data() {
     return {
-      pricesWebhook: "https://boraselhandel.framecore.se/prices?date=",
+      pricesWebhook: "https://boraselhandel.framecore.se/prices-new?date=",
       apiKey: "PeKnqf7kFD2ejLYvv63a",
       prices: [],
       comparePrices: [],
