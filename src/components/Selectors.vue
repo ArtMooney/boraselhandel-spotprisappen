@@ -67,7 +67,7 @@ import Dropdown from "../elements/Dropdown.vue";
     </div>
 
     <div>
-      <div>Jämför med</div>
+      <div>Tidsspann</div>
       <Dropdown
         name="spann"
         v-model="selectCompare"
@@ -76,7 +76,7 @@ import Dropdown from "../elements/Dropdown.vue";
           { value: 2, label: '30 min' },
           { value: 3, label: '15 min' },
         ]"
-        @input="handleSelectCompare"
+        @input="handleSelectSpan"
       />
     </div>
   </div>
@@ -99,6 +99,7 @@ export default {
       selectPeriod: "1",
       selectDate: new Date(),
       selectCompare: "1",
+      selectSpan: "1",
     };
   },
 
@@ -128,6 +129,10 @@ export default {
 
     handleSelectCompare(selectInput) {
       this.selectCompare = selectInput.target.value;
+    },
+
+    handleSelectSpan(selectInput) {
+      this.selectSpan = selectInput.target.value;
     },
   },
 
@@ -163,6 +168,10 @@ export default {
       }
 
       this.$emit("compare", this.selectCompare);
+    },
+
+    selectSpan() {
+      this.$emit("span", this.selectSpan);
     },
 
     date() {

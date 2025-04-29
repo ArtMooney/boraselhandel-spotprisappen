@@ -20,6 +20,7 @@ import loadAnim from "./documents/77076-loading.json";
         @period="handleSelectPeriod"
         @date="handleSelectDate"
         @compare="handleSelectCompare"
+        @span="handleSelectSpan"
       />
 
       <div
@@ -33,7 +34,7 @@ import loadAnim from "./documents/77076-loading.json";
 
       <div v-show="!loader" class="items-center justify-center">
         <div v-show="selectedTab === 0">
-          <Table :prices="prices" :area="selectArea" />
+          <Table :prices="prices" :area="selectArea" :span="selectSpan" />
         </div>
         <div
           v-show="selectedTab === 1"
@@ -79,6 +80,7 @@ export default {
       selectPeriod: "1",
       selectDate: "",
       selectCompare: "1",
+      selectSpan: "1",
       messageBox: "none",
       statusMessage: "-",
     };
@@ -159,6 +161,10 @@ export default {
       }
 
       this.selectCompare = compare;
+    },
+
+    handleSelectSpan(span) {
+      this.selectSpan = span;
     },
   },
 
