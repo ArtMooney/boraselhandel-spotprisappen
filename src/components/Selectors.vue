@@ -6,7 +6,7 @@ import Dropdown from "../elements/Dropdown.vue";
 
 <template>
   <div
-    class="grid-rows-auto relative grid auto-cols-fr grid-cols-1 items-center gap-4 text-black sm:grid-cols-2 lg:grid-cols-4"
+    class="relative grid grid-cols-1 items-center gap-4 text-black sm:grid-cols-2 lg:grid-cols-5"
   >
     <div>
       <div>Välj elområde</div>
@@ -61,6 +61,20 @@ import Dropdown from "../elements/Dropdown.vue";
           { value: 1, label: 'Inget' },
           { value: 2, label: 'Föregående dag' },
           { value: 3, label: 'Samma dag föregående år' },
+        ]"
+        @input="handleSelectCompare"
+      />
+    </div>
+
+    <div>
+      <div>Jämför med</div>
+      <Dropdown
+        name="spann"
+        v-model="selectCompare"
+        :options-list="[
+          { value: 1, label: '60 min' },
+          { value: 2, label: '30 min' },
+          { value: 3, label: '15 min' },
         ]"
         @input="handleSelectCompare"
       />
