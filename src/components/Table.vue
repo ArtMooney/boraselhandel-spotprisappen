@@ -117,14 +117,21 @@ export default {
       const labels = [];
       let from = 0;
       let to = 1;
+      let step = this.span === "0" ? 1 : this.span === "1" ? 4 : 2;
+      let substep = 0;
 
-      if (this.span === "0") {
-        for (let i = 0; i < this.currentPrices?.prices?.length; i++) {
-          labels.push(
-            from.toString().padStart(2, "0") +
-              " - " +
-              to.toString().padStart(2, "0"),
-          );
+      for (let i = 0; i < this.currentPrices?.prices?.length; i++) {
+        labels.push(
+          from.toString().padStart(2, "0") +
+            " - " +
+            to.toString().padStart(2, "0") +
+            (step !== 1 ? " : " + substep + "/" + step : ""),
+        );
+
+        substep++;
+
+        if (substep === step) {
+          substep = 0;
           from++;
           to++;
         }
