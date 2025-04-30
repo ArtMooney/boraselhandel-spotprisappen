@@ -47,6 +47,7 @@ import Dropdown from "../elements/Dropdown.vue";
           :min-date="'2014-01-01'"
           :max-date="new Date()"
           input-class-name="h-12 w-full border-1 border-solid border-[#8d8d8d] rounded mb-0 py-1 text-base"
+          class="[&_div]:!font-straw_light [&_div]:!text-base [&_input]:!font-straw_light [&_input]:!text-base"
         >
         </VueDatePicker>
       </div>
