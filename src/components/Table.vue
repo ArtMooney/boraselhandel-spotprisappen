@@ -23,7 +23,10 @@
       </div>
     </div>
 
-    <template v-for="(label, index) of tableLabels" :key="label + '-' + index">
+    <template
+      v-for="(label, index) of generateLabels"
+      :key="label + '-' + index"
+    >
       <div
         class="flex items-center justify-center p-2"
         style="border: 1px solid #8d8d8d; border-top-width: 0"
@@ -113,7 +116,7 @@ export default {
       return price ? (parseFloat(price) / 10).toFixed(2).toString() : "";
     },
 
-    tableLabels() {
+    generateLabels() {
       const labels = [];
       let from = 0;
       let to = 1;
