@@ -70,11 +70,11 @@ import Dropdown from "../elements/Dropdown.vue";
       <div>Tidsspann</div>
       <Dropdown
         name="spann"
-        v-model="selectCompare"
+        v-model="selectSpan"
         :options-list="[
-          { value: 1, label: '60 min' },
+          { value: 0, label: '60 min' },
           { value: 2, label: '30 min' },
-          { value: 3, label: '15 min' },
+          { value: 1, label: '15 min' },
         ]"
         @input="handleSelectSpan"
       />
@@ -99,7 +99,7 @@ export default {
       selectPeriod: "1",
       selectDate: new Date(),
       selectCompare: "1",
-      selectSpan: "1",
+      selectSpan: "0",
     };
   },
 
@@ -170,12 +170,12 @@ export default {
       this.$emit("compare", this.selectCompare);
     },
 
-    selectSpan() {
-      this.$emit("span", this.selectSpan);
-    },
-
     date() {
       this.selectDate = new Date(this.date);
+    },
+
+    selectSpan() {
+      this.$emit("span", this.selectSpan);
     },
   },
 };

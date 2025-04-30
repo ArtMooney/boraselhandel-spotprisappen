@@ -67,7 +67,7 @@ export default {
 
   data() {
     return {
-      pricesWebhook: "https://boraselhandel.framecore.se/prices-new?date=",
+      pricesWebhook: "https://boraselhandel.framecore.se/price-indicies?date=",
       apiKey: "PeKnqf7kFD2ejLYvv63a",
       prices: [],
       comparePrices: [],
@@ -80,22 +80,25 @@ export default {
       selectPeriod: "1",
       selectDate: "",
       selectCompare: "1",
-      selectSpan: "1",
+      selectSpan: "0",
       messageBox: "none",
       statusMessage: "-",
     };
   },
 
   async created() {
-    this.prices = await this.getPrices(this.getDateString(new Date()));
+    this.prices = await this.getPrices(
+      this.getDateString(new Date()),
+      this.selectSpan,
+    );
     this.loader = false;
   },
 
   methods: {
-    async getPrices(date) {
+    async getPrices(date, span) {
       if (isNaN(Date.parse(date))) return; // make sure date is valid
 
-      const res = await fetch(this.pricesWebhook + date, {
+      const res = await fetch(this.pricesWebhook + date + "&span=" + span, {
         method: "GET",
         headers: {
           Authorization: "Bearer " + this.apiKey,
@@ -151,12 +154,14 @@ export default {
           this.getDateString(
             new Date(new Date().setDate(new Date().getDate() - 1)),
           ),
+          this.selectSpan,
         );
       } else if (compare === "3") {
         this.comparePrices = await this.getPrices(
           this.getDateString(
             new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
           ),
+          this.selectSpan,
         );
       }
 
@@ -170,7 +175,7 @@ export default {
 
   watch: {
     async selectDate() {
-      this.prices = await this.getPrices(this.selectDate);
+      this.prices = await this.getPrices(this.selectDate, this.selectSpan);
     },
   },
 };

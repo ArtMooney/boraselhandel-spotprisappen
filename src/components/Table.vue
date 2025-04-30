@@ -118,7 +118,7 @@ export default {
       let from = 0;
       let to = 1;
 
-      if (this.span === "1") {
+      if (this.span === "0") {
         for (let i = 0; i < this.currentPrices?.prices?.length; i++) {
           labels.push(
             from.toString().padStart(2, "0") +
