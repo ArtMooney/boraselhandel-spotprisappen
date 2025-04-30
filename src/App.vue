@@ -45,6 +45,7 @@ import loadAnim from "./documents/77076-loading.json";
             :comparePrices="comparePrices"
             :area="selectArea"
             :compare="selectCompare"
+            :span="selectSpan"
           />
         </div>
 
