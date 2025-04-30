@@ -177,6 +177,13 @@ export default {
     async selectDate() {
       this.prices = await this.getPrices(this.selectDate, this.selectSpan);
     },
+
+    async selectSpan() {
+      this.prices = await this.getPrices(
+        this.selectDate ? this.selectDate : this.getDateString(new Date()),
+        this.selectSpan,
+      );
+    },
   },
 };
 </script>
