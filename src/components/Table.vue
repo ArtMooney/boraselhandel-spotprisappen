@@ -126,9 +126,10 @@ export default {
       for (let i = 0; i < this.currentPrices?.prices?.length; i++) {
         labels.push(
           from.toString().padStart(2, "0") +
-            " - " +
-            to.toString().padStart(2, "0") +
-            (step !== 1 ? " : " + substep + "/" + step : ""),
+            ":" +
+            (step === 1 ? "00" : (60 / step) * substep)
+              .toString()
+              .padStart(2, "0"),
         );
 
         substep++;
