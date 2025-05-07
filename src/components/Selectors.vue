@@ -29,8 +29,8 @@ import Dropdown from "../elements/Dropdown.vue";
         name="period"
         v-model="selectPeriod"
         :options-list="[
-          { value: 1, label: 'En dag (per timme)' },
-          { value: 2, label: 'En dag framåt (per timme)' },
+          { value: 1, label: 'En dag' },
+          { value: 2, label: 'En dag framåt' },
         ]"
         @input="handleSelectPeriod"
       />
@@ -74,7 +74,6 @@ import Dropdown from "../elements/Dropdown.vue";
         v-model="selectSpan"
         :options-list="[
           { value: 0, label: '60 min' },
-          { value: 2, label: '30 min' },
           { value: 1, label: '15 min' },
         ]"
         @input="handleSelectSpan"
