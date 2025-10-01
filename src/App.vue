@@ -20,7 +20,6 @@ import loadAnim from "./documents/77076-loading.json";
         @period="handleSelectPeriod"
         @date="handleSelectDate"
         @compare="handleSelectCompare"
-        @span="handleSelectSpan"
       />
 
       <div
@@ -81,7 +80,7 @@ export default {
       selectPeriod: "1",
       selectDate: "",
       selectCompare: "1",
-      selectSpan: "0",
+      selectSpan: "1",
       messageBox: "none",
       statusMessage: "-",
     };
@@ -168,22 +167,11 @@ export default {
 
       this.selectCompare = compare;
     },
-
-    handleSelectSpan(span) {
-      this.selectSpan = span;
-    },
   },
 
   watch: {
     async selectDate() {
       this.prices = await this.getPrices(this.selectDate, this.selectSpan);
-    },
-
-    async selectSpan() {
-      this.prices = await this.getPrices(
-        this.selectDate ? this.selectDate : this.getDateString(new Date()),
-        this.selectSpan,
-      );
     },
   },
 };

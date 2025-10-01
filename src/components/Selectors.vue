@@ -6,7 +6,7 @@ import Dropdown from "../elements/Dropdown.vue";
 
 <template>
   <div
-    class="relative grid grid-cols-1 items-center gap-4 text-black sm:grid-cols-2 lg:grid-cols-5"
+    class="relative grid grid-cols-1 items-center gap-4 text-black sm:grid-cols-2 lg:grid-cols-4"
   >
     <div>
       <div>Välj elområde</div>
@@ -66,19 +66,6 @@ import Dropdown from "../elements/Dropdown.vue";
         @input="handleSelectCompare"
       />
     </div>
-
-    <div>
-      <div>Tidsspann</div>
-      <Dropdown
-        name="spann"
-        v-model="selectSpan"
-        :options-list="[
-          { value: 0, label: '60 min' },
-          { value: 1, label: '15 min' },
-        ]"
-        @input="handleSelectSpan"
-      />
-    </div>
   </div>
 </template>
 
@@ -99,7 +86,6 @@ export default {
       selectPeriod: "1",
       selectDate: new Date(),
       selectCompare: "1",
-      selectSpan: "0",
     };
   },
 
@@ -129,10 +115,6 @@ export default {
 
     handleSelectCompare(selectInput) {
       this.selectCompare = selectInput.target.value;
-    },
-
-    handleSelectSpan(selectInput) {
-      this.selectSpan = selectInput.target.value;
     },
   },
 
@@ -172,10 +154,6 @@ export default {
 
     date() {
       this.selectDate = new Date(this.date);
-    },
-
-    selectSpan() {
-      this.$emit("span", this.selectSpan);
     },
   },
 };
