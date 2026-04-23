@@ -204,7 +204,6 @@ export default {
       return generateStockholmLabels(deliveryDate, priceList.length, this.span);
     },
   },
-
   watch: {
     prices() {
       this.updateChartData();
