@@ -15,6 +15,7 @@ import {
   LinearScale,
   Filler,
 } from "chart.js";
+import { generateStockholmLabels } from "../utils/labels";
 
 ChartJS.register(
   Title,
@@ -194,31 +195,13 @@ export default {
     },
 
     generateLabels() {
-      const labels = [];
-      let from = 0;
-      let to = 1;
-      let step = this.span === "0" ? 1 : this.span === "1" ? 4 : 2;
-      let substep = 0;
+      const priceList = this.prices[this.areaIndex]?.prices;
+      if (!priceList?.length) return [];
 
-      for (let i = 0; i < this.prices[this.areaIndex]?.prices?.length; i++) {
-        labels.push(
-          from.toString().padStart(2, "0") +
-            ":" +
-            (step === 1 ? "00" : (60 / step) * substep)
-              .toString()
-              .padStart(2, "0"),
-        );
+      const deliveryDate =
+        this.prices[this.areaIndex]?.deliveryDateCET ?? new Date();
 
-        substep++;
-
-        if (substep === step) {
-          substep = 0;
-          from++;
-          to++;
-        }
-      }
-
-      return labels;
+      return generateStockholmLabels(deliveryDate, priceList.length, this.span);
     },
   },
 
